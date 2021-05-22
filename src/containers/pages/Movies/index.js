@@ -10,14 +10,14 @@ export default function Movies(props) {
     if (data) {
         renderCard = data.movies.map(val => {
             return(
-                <Col className="mt-2">
+                <Col className="mt-2" key={val.id} >
                     <Card body className="card-movies">
                         <CardTitle tag="h5">Name Movies : {val.name}</CardTitle>
                         <p>Genre : {val.genre}</p>
                         <p>Actor : {val.actor.name}</p>
-                            <Link to='/'>
-                                <Button outline color="primary">Back Home</Button>
-                            </Link>
+                        <Link to='/'>
+                            <Button outline color="primary">Back Home</Button>
+                        </Link>
                     </Card>
                 </Col>
             )

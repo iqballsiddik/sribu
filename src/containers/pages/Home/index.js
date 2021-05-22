@@ -7,21 +7,21 @@ import services from '../../../helper/services';
 
 export default function Home() {
     const [listActors, setListActors] = useState();
+
     useEffect(() => {
+        const params = JSON.stringify(
+            {
+                "query" : "{actors { id name age movies{ id name genre actor{name}}}}" 
+            }
+        );
+        const fetchActors = () => {
+            services.getActors(params)
+            .then(res => setListActors(res.data))
+            .catch(err => { return err})
+        }
         fetchActors()
     }, [])
-
-    const params = JSON.stringify(
-        {
-            "query" : "{actors { id name age movies{ id name genre actor{name}}}}" 
-        }
-    );
     
-    const fetchActors = () => {
-        services.getActors(params)
-        .then(res => setListActors(res.data))
-        .catch(err => { return err})
-    }
     return (
         <div>
             <Container className="mt-2 mb-4">
